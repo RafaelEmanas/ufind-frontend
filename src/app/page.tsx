@@ -1,7 +1,6 @@
 import FilterSection from "@/components/filter-section";
 import ItemsList from "@/components/items-list";
 import LandingHeader from "@/components/landing-header";
-import ItemsPagination from "@/components/items-pagination";
 import SearchSection from "@/components/search-section";
 
 export default function Home() {
@@ -13,6 +12,7 @@ export default function Home() {
 
 			<main className="container mx-auto md:px-4 md:py-8 md:space-y-8">
 				<FilterSection />
+				<ItemsList />
 			</main>
 
 		</div>
