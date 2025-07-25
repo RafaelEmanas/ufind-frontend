@@ -1,4 +1,3 @@
-import { Button } from "./ui/button";
 import { Search } from "lucide-react";
 
 const LandingHeader = () => {
