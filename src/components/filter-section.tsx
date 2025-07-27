@@ -18,13 +18,12 @@ const FilterSection = () => {
 	const [includeClaimed, setIncludeClaimed] = useState(false);
 
 
-
 	return (
 		<section>
 			<div className="py-6 px-4">
 				<div className="flex items-center gap-2 mb-4">
 					<Filter className="h-5 w-5 text-primary" />
-					<h3 className="text-lg font-semibold">Filtrar Itens</h3>
+					<h3 className="text-lg font-semibold text-foreground">Filtrar Itens</h3>
 				</div>
 
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -34,16 +33,17 @@ const FilterSection = () => {
 						<Popover>
 							<PopoverTrigger asChild>
 								<Button
+									variant="filter"
 									className={cn(
-										"h-11 md:h-auto w-full justify-start text-left font-normal",
-										!dateFrom && ""
+										"h-11 w-full justify-start text-left font-normal",
+										!dateFrom && "text-muted-foreground"
 									)}
 								>
 									<Calendar className="mr-2 h-4 w-4" />
 									{dateFrom ? format(dateFrom, "PPP") : "Selecionar data"}
 								</Button>
 							</PopoverTrigger>
-							<PopoverContent className="w-full p-0" align="start">
+							<PopoverContent className="w-auto p-0" align="start">
 								<CalendarComponent
 									mode="single"
 									selected={dateFrom}
@@ -60,9 +60,10 @@ const FilterSection = () => {
 						<Popover>
 							<PopoverTrigger asChild>
 								<Button
+									variant="filter"
 									className={cn(
-										"h-11 md:h-auto w-full justify-start text-left font-normal",
-										!dateTo && "text-muted"
+										"h-11 w-full justify-start text-left font-normal",
+										!dateTo && "text-muted-foreground"
 									)}
 								>
 									<Calendar className="mr-2 h-4 w-4" />
@@ -91,7 +92,7 @@ const FilterSection = () => {
 								placeholder="ex: Icomp, CDC, etc"
 								value={location}
 								onChange={(e) => setLocation(e.target.value)}
-								className="h-11 md:h-9 pl-10"
+								className="h-11 pl-10 border-border"
 							/>
 						</div>
 					</div>
@@ -103,6 +104,7 @@ const FilterSection = () => {
 						id="include-claimed"
 						checked={includeClaimed}
 						onCheckedChange={(checked) => setIncludeClaimed(checked === true)}
+						className="h-6 w-6 sm:h-4 sm:w-4"
 					/>
 					<Label htmlFor="include-claimed" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
 						Incluir itens devolvidos

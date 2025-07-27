@@ -18,7 +18,7 @@ const SearchSection = () => {
 						<div className="relative flex-1">
 							<Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
 							<Input
-								placeholder="O que perdeu?"
+								placeholder="O que você perdeu?"
 								className="pl-10 py-6 text-lg border-0 bg-white"
 							/>
 						</div>
