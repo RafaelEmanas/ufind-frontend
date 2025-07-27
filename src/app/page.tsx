@@ -1,5 +1,6 @@
 import FilterSection from "@/components/filter-section";
 import ItemsList from "@/components/items-list";
+import Pagination from "@/components/items-pagination";
 import { getItems } from "@/services/api";
 import LandingHeader from "@/components/landing-header";
 import SearchSection from "@/components/search-section";
@@ -31,6 +32,13 @@ export default async function Home({ searchParams }: {
                         totalItems={responseGetItemsDto.total_elements}
                     />
                 </main>
+				{
+					responseGetItemsDto.total_elements > 0?(
+                		<Pagination totalPages={responseGetItemsDto.total_pages} />
+					) : (
+						null
+					)
+				}
             </div>
         );
     } catch (error) {
