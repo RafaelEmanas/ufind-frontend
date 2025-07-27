@@ -15,7 +15,7 @@ const ItemCard = ({ item }: ItemCardProps) => {
 
 	return (
 		<Card
-			className="group hover duration-300 border cursor-pointer hover:scale-[1.01]"
+			className="group hover:shadow-lg transition-all duration-300 border border-border cursor-pointer hover:scale-[1.02]"
 		>
 			<CardContent className="p-0">
 				<div className="aspect-[4/3] rounded-t-lg overflow-hidden">
@@ -33,26 +33,26 @@ const ItemCard = ({ item }: ItemCardProps) => {
 
 				<div className="p-4 space-y-3">
 					<div className="flex items-start justify-between gap-2">
-						<h3 className="font-semibold text-lg line-clamp-2 flex-1 min-w-0 break-words">
+						<h3 className="font-semibold text-lg text-foreground line-clamp-2 flex-1 min-w-0 break-words">
 							{item.name}
 						</h3>
 						<Badge
-							variant={status === "Available" ? "default" : "secondary"}
-							className={`${status === "Available" ? "" : ""} flex-shrink-0 whitespace-nowrap`}
+							variant={item.is_claimed? "default" : "secondary"}
+							className={`${item.is_claimed? "bg-success text-success-foreground" : ""} flex-shrink-0 whitespace-nowrap`}
 						>
 							{item.is_claimed ? "Achado" : "Perdido"}
 						</Badge>
 					</div>
-					<p className="text-sm line-clamp-2 break-words">
+					<p className="text-sm text-muted-foreground line-clamp-2 break-words">
 						{item.description}
 					</p>
 					<div className="space-y-2">
-						<div className="flex items-center gap-2 text-sm">
+						<div className="flex items-center gap-2 text-sm text-muted-foreground">
 							<Calendar className="h-4 w-4 flex-shrink-0" />
 							<span className="break-words">Encontrado em {item.date_found}</span>
 						</div>
 
-						<div className="flex items-center gap-2 text-sm">
+						<div className="flex items-center gap-2 text-sm text-muted-foreground">
 							<MapPin className="h-4 w-4 flex-shrink-0" />
 							<span className="break-words">{item.place_found}</span>
 						</div>

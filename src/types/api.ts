@@ -290,7 +290,6 @@ export interface operations {
         parameters: {
             query: {
                 page: number;
-                size: number;
                 search?: string;
                 startDate?: string;
                 endDate?: string;
