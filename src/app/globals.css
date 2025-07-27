@@ -14,4 +14,12 @@
 
     --color-popover: #ffffff;
     --popover-foreground: #1f2e26;
+
+    --color-success: #29a329;
+    --color-success-foreground: #fafafa;
+
+    --color-border: #e2e8f0;
+
+    --color-accent: #deede6;
+    --color-accent-foreground: #196640;
 }
