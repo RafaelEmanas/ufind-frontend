@@ -8,14 +8,35 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { format } from "date-fns";
-import { cn } from "@/lib/utils";
+import { format, parseISO } from "date-fns";
+import { cn, formatSelectedDate } from "@/lib/utils";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { ptBR } from "date-fns/locale";
 
 const FilterSection = () => {
-	const [dateFrom, setDateFrom] = useState<Date>();
-	const [dateTo, setDateTo] = useState<Date>();
-	const [location, setLocation] = useState("");
-	const [includeClaimed, setIncludeClaimed] = useState(false);
+
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
+	const { replace } = useRouter();
+
+	const startDateFromURL = searchParams.get('startDate')?.toString();
+	const endDateFromURL = searchParams.get('endDate')?.toString();
+	const locationFromURL = searchParams.get('location')?.toString();
+	const addIsClaimedFromURL = searchParams.get('addIsClaimed')?.toString();
+
+	const [startDate, setStartDate] = useState<Date | undefined>(()=>startDateFromURL? parseISO(startDateFromURL) : undefined);
+	const [endDate, setEndDate] = useState<Date | undefined>(()=>endDateFromURL? parseISO(endDateFromURL) : undefined);
+	const [location, setLocation] = useState(()=> locationFromURL? locationFromURL : "");
+	const [addIsClaimed, setAddIsClaimed] = useState(()=> addIsClaimedFromURL==="true"? true : false);
+
+	const handleFilters = () =>{
+		const params = new URLSearchParams(searchParams);
+		startDate!==undefined? params.set('startDate', formatSelectedDate(startDate)) : params.delete('startDate');
+		endDate!==undefined? params.set('endDate', formatSelectedDate(endDate)) : params.delete('endDate');
+		location? params.set('location', location) : params.delete('location');
+		addIsClaimed? params.set("addIsClaimed", addIsClaimed.toString()) : params.delete('addIsClaimed');
+		replace(`${pathname}?${params.toString()}`);
+	}
 
 
 	return (
@@ -33,21 +54,22 @@ const FilterSection = () => {
 						<Popover>
 							<PopoverTrigger asChild>
 								<Button
+									defaultValue={startDateFromURL ? startDateFromURL : "Selecionar data"}
 									variant="filter"
 									className={cn(
 										"h-11 w-full justify-start text-left font-normal",
-										!dateFrom && "text-muted-foreground"
+										!startDate && "text-muted-foreground"
 									)}
 								>
 									<Calendar className="mr-2 h-4 w-4" />
-									{dateFrom ? format(dateFrom, "PPP") : "Selecionar data"}
+									{startDate ? format(startDate, "PPP", { locale: ptBR }) : "Selecionar data"}
 								</Button>
 							</PopoverTrigger>
 							<PopoverContent className="w-auto p-0" align="start">
 								<CalendarComponent
 									mode="single"
-									selected={dateFrom}
-									onSelect={setDateFrom}
+									selected={startDate}
+									onSelect={setStartDate}
 									className="p-3 pointer-events-auto w-full"
 								/>
 							</PopoverContent>
@@ -60,21 +82,22 @@ const FilterSection = () => {
 						<Popover>
 							<PopoverTrigger asChild>
 								<Button
+									defaultValue={endDateFromURL ? endDateFromURL : "Selecionar data"}
 									variant="filter"
 									className={cn(
 										"h-11 w-full justify-start text-left font-normal",
-										!dateTo && "text-muted-foreground"
+										!endDate && "text-muted-foreground"
 									)}
 								>
 									<Calendar className="mr-2 h-4 w-4" />
-									{dateTo ? format(dateTo, "PPP") : "Selecionar data"}
+									{endDate ? format(endDate, "PPP", { locale: ptBR }) : "Selecionar data"}
 								</Button>
 							</PopoverTrigger>
 							<PopoverContent className="w-auto p-0" align="start">
 								<CalendarComponent
 									mode="single"
-									selected={dateTo}
-									onSelect={setDateTo}
+									selected={endDate}
+									onSelect={setEndDate}
 									autoFocus
 									className="p-3 pointer-events-auto"
 								/>
@@ -88,9 +111,9 @@ const FilterSection = () => {
 						<div className="relative">
 							<MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
 							<Input
+								value={location? location : ""}
 								id="location"
 								placeholder="ex: Icomp, CDC, etc"
-								value={location}
 								onChange={(e) => setLocation(e.target.value)}
 								className="h-11 pl-10 border-border"
 							/>
@@ -102,8 +125,8 @@ const FilterSection = () => {
 				<div className="flex items-center space-x-2 mt-4">
 					<Checkbox
 						id="include-claimed"
-						checked={includeClaimed}
-						onCheckedChange={(checked) => setIncludeClaimed(checked === true)}
+						checked={addIsClaimed}
+						onCheckedChange={(checked) => setAddIsClaimed(checked === true)}
 						className="h-6 w-6 sm:h-4 sm:w-4"
 					/>
 					<Label htmlFor="include-claimed" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
@@ -112,7 +135,12 @@ const FilterSection = () => {
 				</div>
 
 				<div className="flex gap-2 mt-4">
-					<Button size={"lg"} variant="default" className="flex-1 md:flex-none">
+					<Button
+						size={"lg"}
+						variant="default"
+						className="flex-1 md:flex-none"
+						onClick={handleFilters}
+					>
 						Aplicar Filtros
 					</Button>
 				</div>

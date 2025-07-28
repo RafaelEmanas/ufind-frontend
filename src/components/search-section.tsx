@@ -3,8 +3,31 @@
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 const SearchSection = () => {
+
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
+	const { replace } = useRouter();
+
+	const searchFromURL = searchParams.get('search')?.toString();
+
+	const [search, setSearch] = useState<string | undefined>(()=> searchFromURL? searchFromURL : "");
+
+	const handleSearch = () => {
+		const params = new URLSearchParams(searchParams);
+		search? params.set('search', search) : params.delete('search');
+		replace(`${pathname}?${params.toString()}`)
+	}
+
+	const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+		if (event.key === 'Enter') {
+			handleSearch();
+		}
+	}
+
 	return (
 		<section className="py-12 bg-primary">
 			<div className="mx-auto px-4">
@@ -18,12 +41,20 @@ const SearchSection = () => {
 						<div className="relative flex-1">
 							<Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
 							<Input
+								value={search? search : ""}
+								onKeyDown={(e)=>handleKeyPress(e)}
+								onChange={(e)=> setSearch(e.target.value)}
 								placeholder="O que você perdeu?"
 								className="pl-10 py-6 text-lg border-0 bg-white"
+								type="search"
 							/>
 						</div>
-						<Button size="lg" className="hidden h-auto md:block px-8 bg-background text-primary hover:bg-background/90">
-						Buscar
+						<Button
+							onClick={handleSearch}
+							size="lg"
+							className="hidden h-auto md:block px-8 bg-background text-primary hover:bg-background/90"
+						>
+							Buscar
 						</Button>
 					</div>
 				</div>
