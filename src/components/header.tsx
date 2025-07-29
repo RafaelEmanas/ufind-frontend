@@ -1,7 +1,7 @@
 import { Search } from "lucide-react";
 import Link from "next/link";
 
-const LandingHeader = () => {
+const Header = () => {
 	return (
 			<header className="bg-card border-b border-border shadow-sm">
 				<div className="container mx-auto px-4 py-4">
@@ -18,4 +18,4 @@ const LandingHeader = () => {
 	);
 }
 
-export default LandingHeader;
+export default Header;
