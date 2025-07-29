@@ -2,7 +2,6 @@ import FilterSection from "@/components/filter-section";
 import ItemsList from "@/components/items-list";
 import Pagination from "@/components/items-pagination";
 import { getItems } from "@/services/api";
-import LandingHeader from "@/components/landing-header";
 import SearchSection from "@/components/search-section";
 import { components } from "@/types/api";
 import { GetItemsQuerySchema } from "@/types/zod";
@@ -22,7 +21,6 @@ export default async function Home({ searchParams }: {
 
         return (
             <div className="min-h-screen bg-background">
-                <LandingHeader />
                 <SearchSection />
 
                 <main className="container mx-auto md:px-4 md:py-8 md:space-y-8">
