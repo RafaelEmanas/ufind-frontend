@@ -1,8 +1,8 @@
-import FilterSection from "@/components/filter-section";
-import ItemsList from "@/components/items-list";
-import Pagination from "@/components/items-pagination";
+import FilterSection from "@/components/homepage/filter-section";
+import ItemsList from "@/components/homepage/items-list";
+import Pagination from "@/components/homepage/items-pagination";
 import { getItems } from "@/services/api";
-import SearchSection from "@/components/search-section";
+import SearchSection from "@/components/homepage/search-section";
 import { components } from "@/types/api";
 import { GetItemsQuerySchema } from "@/types/zod";
 import { redirect } from "next/navigation";
