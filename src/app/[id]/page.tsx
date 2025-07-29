@@ -1,11 +1,12 @@
-import ItemDetailsComponent from "@/components/item-details";
+import { ItemDetailsComponent } from "@/components/details/item-details";
+interface ItemPageProps {
+    params: {
+        id: string;
+    };
+}
 
+export default function ItemDetailsPage({ params }: ItemPageProps) {
 
-export default function ItemDetailsPage() {
+	return <ItemDetailsComponent itemId={params.id}/>
 
-		return (
-			<div>
-				<ItemDetailsComponent/>
-			</div>
-    	);
 }
