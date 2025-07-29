@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Calendar, MapPin, Eye } from "lucide-react";
 import type { components } from '@/types/api'
+import { useRouter } from "next/navigation";
 
 type ItemForGetItemsDTO = components['schemas']['ItemForGetItemsDTO']
 
@@ -13,8 +14,11 @@ type ItemCardProps = {
 
 const ItemCard = ({ item }: ItemCardProps) => {
 
+	const router = useRouter()
+
 	return (
 		<Card
+			onClick={()=>router.push(`${item.id}`)}
 			className="group hover:shadow-lg transition-all duration-300 border border-border cursor-pointer hover:scale-[1.02]"
 		>
 			<CardContent className="p-0">
@@ -38,7 +42,7 @@ const ItemCard = ({ item }: ItemCardProps) => {
 						</h3>
 						<Badge
 							variant={item.is_claimed? "default" : "secondary"}
-							className={`${item.is_claimed? "bg-success text-success-foreground" : ""} flex-shrink-0 whitespace-nowrap`}
+							className="flex-shrink-0 whitespace-nowrap"
 						>
 							{item.is_claimed ? "Achado" : "Perdido"}
 						</Badge>
