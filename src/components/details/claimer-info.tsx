@@ -10,7 +10,7 @@ interface ClaimerInfoCardProps {
     dateClaimed: string;
 }
 
-export const ClaimerInfoCard = ({ userClaimer, dateClaimed }: ClaimerInfoCardProps) => {
+const ClaimerInfoCard = ({ userClaimer, dateClaimed }: ClaimerInfoCardProps) => {
     return (
         <Card className="border-border">
             <CardHeader>
@@ -33,3 +33,5 @@ export const ClaimerInfoCard = ({ userClaimer, dateClaimed }: ClaimerInfoCardPro
         </Card>
     );
 };
+
+export default ClaimerInfoCard;

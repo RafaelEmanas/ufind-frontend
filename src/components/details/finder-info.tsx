@@ -8,7 +8,7 @@ interface FinderInfoCardProps {
     userFinder: UserType;
 }
 
-export const FinderInfoCard = ({ userFinder }: FinderInfoCardProps) => {
+const FinderInfoCard = ({ userFinder }: FinderInfoCardProps) => {
     return (
         <Card className="border-border">
             <CardHeader>
@@ -28,3 +28,5 @@ export const FinderInfoCard = ({ userFinder }: FinderInfoCardProps) => {
         </Card>
     );
 };
+
+export default FinderInfoCard;

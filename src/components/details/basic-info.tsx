@@ -6,7 +6,7 @@ interface ItemBasicInfoProps {
     placeFound: string;
 }
 
-export const ItemBasicInfo = ({ name, dateFound, placeFound }: ItemBasicInfoProps) => {
+const ItemBasicInfo = ({ name, dateFound, placeFound }: ItemBasicInfoProps) => {
     return (
         <div>
             <h1 className="text-3xl font-bold text-foreground mb-4">
@@ -27,3 +27,5 @@ export const ItemBasicInfo = ({ name, dateFound, placeFound }: ItemBasicInfoProp
         </div>
     );
 };
+
+export default ItemBasicInfo;

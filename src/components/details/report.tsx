@@ -4,7 +4,7 @@ interface FullReportCardProps {
     report: string;
 }
 
-export const FullReportCard = ({ report }: FullReportCardProps) => {
+const FullReportCard = ({ report }: FullReportCardProps) => {
     return (
         <Card className="mt-8 border-border">
             <CardHeader>
@@ -18,3 +18,5 @@ export const FullReportCard = ({ report }: FullReportCardProps) => {
         </Card>
     );
 };
+
+export default FullReportCard;

@@ -4,13 +4,13 @@ import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { components } from "@/types/api";
-import { ItemDescriptionCard } from "./description-card";
-import { FinderInfoCard } from "./finder-info";
-import { ClaimerInfoCard } from "./claimer-info";
-import { ItemStatusAndAction } from "./status-action";
-import { ItemImageDisplay } from "./image-display";
-import { ItemBasicInfo } from "./basic-info";
-import { FullReportCard } from "./report";
+import ItemDescriptionCard from "./description-card";
+import FinderInfoCard from "./finder-info";
+import ClaimerInfoCard from "./claimer-info";
+import ItemStatusAndAction from "./status-action";
+import ItemImageDisplay from "./image-display";
+import ItemBasicInfo from "./basic-info";
+import FullReportCard from "./report";
 
 type ResponseGetItemByItemIdDTO = components['schemas']['ResponseGetItemByItemIdDTO']
 
@@ -106,7 +106,7 @@ interface ItemDetailsPageProps {
     itemId: string;
 }
 
-export const ItemDetailsComponent = ({ itemId }: ItemDetailsPageProps) => {
+const ItemDetailsComponent = ({ itemId }: ItemDetailsPageProps) => {
     const router = useRouter();
 
     const itemDetails = mockItemDetailsList[0];
@@ -172,3 +172,5 @@ export const ItemDetailsComponent = ({ itemId }: ItemDetailsPageProps) => {
         </div>
     );
 };
+
+export default ItemDetailsComponent;

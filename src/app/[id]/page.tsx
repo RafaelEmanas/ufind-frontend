@@ -1,12 +1,12 @@
-import { ItemDetailsComponent } from "@/components/details/item-details";
+import ItemDetailsComponent from "@/components/details/item-details";
 interface ItemPageProps {
-    params: {
-        id: string;
-    };
+    params: Promise<{ id: string }>
 }
 
-export default function ItemDetailsPage({ params }: ItemPageProps) {
+export default async function ItemDetailsPage({ params }: ItemPageProps) {
 
-	return <ItemDetailsComponent itemId={params.id}/>
+    const itemId = (await params).id;
+
+	return <ItemDetailsComponent itemId={itemId}/>
 
 }

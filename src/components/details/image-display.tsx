@@ -8,7 +8,7 @@ interface ItemImageDisplayProps {
     hasClaimer: boolean;
 }
 
-export const ItemImageDisplay = ({ imageUrl, itemName, isClaimed, hasClaimer }: ItemImageDisplayProps) => {
+const ItemImageDisplay = ({ imageUrl, itemName, isClaimed, hasClaimer }: ItemImageDisplayProps) => {
     return (
         <div className="space-y-4">
             <Card className="overflow-hidden border-none">
@@ -40,3 +40,5 @@ export const ItemImageDisplay = ({ imageUrl, itemName, isClaimed, hasClaimer }: 
         </div>
     );
 };
+
+export default ItemImageDisplay;

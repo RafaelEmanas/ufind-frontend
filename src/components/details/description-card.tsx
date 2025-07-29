@@ -4,7 +4,7 @@ interface ItemDescriptionCardProps {
     description: string;
 }
 
-export const ItemDescriptionCard = ({ description }: ItemDescriptionCardProps) => {
+const ItemDescriptionCard = ({ description }: ItemDescriptionCardProps) => {
     return (
         <Card className="border-border">
             <CardHeader>
@@ -18,3 +18,5 @@ export const ItemDescriptionCard = ({ description }: ItemDescriptionCardProps) =
         </Card>
     );
 };
+
+export default ItemDescriptionCard;

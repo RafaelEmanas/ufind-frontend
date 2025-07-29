@@ -6,10 +6,10 @@ interface ItemStatusAndActionProps {
     isWithFinder: boolean;
     placeStored: string;
     finderName: string;
-    onClaimItem: () => void; // Placeholder for claim action
+    onClaimItem: () => void;
 }
 
-export const ItemStatusAndAction = ({ isWithFinder, placeStored, finderName, onClaimItem }: ItemStatusAndActionProps) => {
+const ItemStatusAndAction = ({ isWithFinder, placeStored, finderName, onClaimItem }: ItemStatusAndActionProps) => {
     return (
         <Card className="border-border">
             <CardContent className="pt-6">
@@ -36,3 +36,5 @@ export const ItemStatusAndAction = ({ isWithFinder, placeStored, finderName, onC
         </Card>
     );
 };
+
+export default ItemStatusAndAction;
