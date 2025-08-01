@@ -5,6 +5,30 @@ export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs))
 }
 
+const ACCESS_TOKEN_KEY = 'access_token';
+const REFRESH_TOKEN_KEY = 'refresh_token';
+
+export const getAccessTokenFromLocalStorage = () : string | null =>{
+	return localStorage.getItem(ACCESS_TOKEN_KEY);
+}
+export const getRefreshTokenFromLocalStorage = () : string | null =>{
+	return localStorage.getItem(REFRESH_TOKEN_KEY);
+}
+
+export const setAccessTokenToLocalStorage = (accessToken : string) =>{
+	localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+}
+export const setRefreshTokenToLocalStorage = (refreshToken : string) =>{
+	localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
+}
+
+export const deleteAccessTokenFromLocalStorage = () =>{
+	localStorage.removeItem(ACCESS_TOKEN_KEY);
+}
+export const deleteRefreshTokenFromLocalStorage = () =>{
+	localStorage.removeItem(REFRESH_TOKEN_KEY);
+}
+
 export const formatSelectedDate = (date: Date) : string =>{
 	const year = date.getFullYear();
 	const month = (date.getMonth() + 1).toString().padStart(2, '0');

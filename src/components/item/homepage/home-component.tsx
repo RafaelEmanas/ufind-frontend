@@ -1,7 +1,7 @@
-import FilterSection from "@/components/homepage/filter-section";
-import ItemsList from "@/components/homepage/items-list";
-import Pagination from "@/components/homepage/items-pagination";
-import SearchSection from "@/components/homepage/search-section";
+import FilterSection from "@/components/item/homepage/filter-section";
+import ItemsList from "@/components/item/homepage/items-list";
+import Pagination from "@/components/item/homepage/items-pagination";
+import SearchSection from "@/components/item/homepage/search-section";
 import { components } from "@/types/api";
 
 type ResponseGetItemsDTO = components["schemas"]["ResponseGetItemsDTO"];
